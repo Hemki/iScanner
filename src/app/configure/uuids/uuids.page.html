@@ -2,9 +2,8 @@
   <ion-toolbar>
     <ion-toolbar>
       <ion-buttons slot="start">
-        <ion-back-button default-href="/"></ion-back-button>
+        <ion-back-button default-href="/tabs/tab1"></ion-back-button>
       </ion-buttons>
-      <ion-title>Back Button</ion-title>
       <ion-title>UUIDs</ion-title>
       <ion-buttons slot="end">
         <ion-button (click)="toggleEdit()"> {{ isEditing ? 'Done' : 'Edit' }} </ion-button>
@@ -21,8 +20,8 @@
   </ion-header>
 
   <ion-list>
-    <ion-searchbar></ion-searchbar>
-    <ion-item-sliding *ngFor="let uuid of uuids" [class.edit-mode]="isEditing">
+    <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="handleInput()"></ion-searchbar>
+    <ion-item-sliding *ngFor="let uuid of filteredUuids" [class.edit-mode]="isEditing">
       <ion-item *ngIf="isEditing" side="start">
         <ion-checkbox label-placement="end" justify="start" *ngIf="isEditing"
           (ionChange)="onUuidClick(uuid)">{{uuid}}</ion-checkbox>
@@ -31,7 +30,7 @@
         <ion-label>{{uuid}}</ion-label>
       </ion-item>
       <ion-item-options side="end">
-        <ion-item-option color="danger">
+        <ion-item-option (click)="deleteUuid(uuid)" color="danger">
           <ion-icon slot="icon-only" name="trash"></ion-icon>
         </ion-item-option>
       </ion-item-options>
@@ -49,7 +48,7 @@
 <ion-footer *ngIf="isEditing">
   <ion-toolbar>
     <ion-buttons slot="end">
-      <ion-button disabled="{{!this.selectedUuids.length}}" (click)="deleteSelectedUuids()">Delete</ion-button>
+      <ion-button disabled="{{!this.selectedUuids.size}}" (click)="deleteSelectedUuids()">Delete</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>

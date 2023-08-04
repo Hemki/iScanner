@@ -1,34 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
+import { StorageService } from 'src/app/services/shared/storage.service';
 
 @Component({
   selector: 'app-uuids',
   templateUrl: './uuids.page.html',
   styleUrls: ['./uuids.page.scss'],
 })
-export class UuidsPage {
+export class UuidsPage implements OnInit{
 
-  uuids: string[] = ["XXXX-XXXX-XXXX-XXXX","YYYY-YYYY-YYYY-YYYY"]
-  isEditing: boolean = false; 
-  selectedUuids: string[] = [];
+  uuids: Set<string> = new Set<string>();
+  filteredUuids: Set<string> = new Set([...this.uuids]);
+  isEditing: boolean = false;
+  selectedUuids: Set<string> = new Set<string>();
   newUuid: string = "";
+  searchTerm: string = "";
 
-  constructor() { }
+  constructor(private alertController: AlertController, private storage: StorageService) { 
+  }
+
+  async ngOnInit(): Promise<void> {
+    this.uuids = new Set<string>(await this.storage.get("uuids"));
+    this.handleInput();
+  }
 
   public toggleEdit() {
     this.isEditing = !this.isEditing;
-    this.selectedUuids = [];
+    this.selectedUuids.clear()
   }
 
 
   public onUuidClick(uuid: string) {
     if (this.isEditing) {
-      const index = this.selectedUuids.indexOf(uuid);
-      if (index > -1) {
-        this.selectedUuids.splice(index, 1); // Deselect the uuid if already selected
-        console.log(this.selectedUuids)
+      if (this.selectedUuids.has(uuid)) {
+        this.selectedUuids.delete(uuid); // Deselect the uuid if already selected
+        console.log(this.selectedUuids);
       } else {
-        this.selectedUuids.push(uuid); // Select the uuid if not already selected
-        console.log(this.selectedUuids)
+        this.selectedUuids.add(uuid); // Select the uuid if not already selected
+        console.log(this.selectedUuids);
       }
     } else {
       // Handle regular click on mail items
@@ -38,26 +47,50 @@ export class UuidsPage {
 
   public deleteSelectedUuids() {
 
-    this.uuids = this.uuids.filter((uuid) => !this.selectedUuids.includes(uuid));
+    this.uuids = new Set([...this.uuids].filter((uuid) => !this.selectedUuids.has(uuid)));
+    this.handleInput();
+    this.storage.set("uuids",this.uuids);
 
-    // Clear the selected mails array after deletion
-    this.selectedUuids = [];
-    this.isEditing = false; // Exit edit mode after deleting mails
+    // Clear the selected UUIDs set after deletion
+    this.selectedUuids.clear();
+    this.isEditing = false; // Exit edit mode after deleting UUIDs
 
-    console.log(this.uuids)
+    console.log(this.uuids);
   }
 
-  public addUuid() {
-    if (this.newUuid.trim() !== '') {
-      this.uuids.push(this.newUuid); // Add the new mail to the array
-      this.newUuid = ''; // Clear the input field after adding the UUID
+
+  public deleteUuid(uuid: string) {
+    this.uuids.delete(uuid);
+    this.handleInput();
+    this.storage.set("uuids",this.uuids);
+  }
+
+  public async addUuid() {
+    if (!this.uuids.has(this.newUuid)) {
+      this.uuids.add(this.newUuid);
+      this.filteredUuids.add(this.newUuid);
+      this.storage.set("uuids",this.uuids);
+      console.log('UUID added:', this.newUuid);
+    } else {
+      const alert = await this.alertController.create({
+        header: 'Duplicate UUID',
+        message: 'This UUID already exists.',
+        buttons: ['OK'],
+      });
+      await alert.present();
+      console.log('UUID already exists:', this.newUuid);
     }
+    this.newUuid = "";
   }
 
   public checkForEnter(event: KeyboardEvent) {
     if (event.key === 'Enter' && this.newUuid.trim() !== '') {
       this.addUuid();
     }
+  }
+
+  handleInput() {
+    this.filteredUuids = new Set([...this.uuids].filter((d) => d.toLowerCase().indexOf(this.searchTerm) > -1));
   }
 
 }
