@@ -9,4 +9,7 @@ export class Tab1Page {
 
   constructor() {}
 
+  // This will come from a service eventually
+  public uuids : boolean = false;
+
 }
