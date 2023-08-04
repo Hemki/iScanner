@@ -4,11 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { UuidsComponent } from './uuids.component';
+import { UuidsPageRoutingModule } from './uuids-routing.module';
+
+import { UuidsPage } from './uuids.page';
 
 @NgModule({
-  imports: [ CommonModule, FormsModule, IonicModule],
-  declarations: [UuidsComponent],
-  exports: [UuidsComponent]
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    UuidsPageRoutingModule
+  ],
+  declarations: [UuidsPage]
 })
-export class UuidsComponentModule {}
+export class UuidsPageModule {}
