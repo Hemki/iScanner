@@ -90,7 +90,7 @@ export class UuidsPage implements OnInit{
   }
 
   handleInput() {
-    this.filteredUuids = new Set([...this.uuids].filter((d) => d.toLowerCase().indexOf(this.searchTerm) > -1));
+    this.filteredUuids = new Set([...this.uuids].filter((d) => d.toLowerCase().includes(this.searchTerm.toLowerCase())));
   }
 
 }
