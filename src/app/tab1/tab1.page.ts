@@ -12,7 +12,6 @@ import { DefaultRssiFilterService } from '../services/shared/defaults/defaultRss
 export class Tab1Page implements OnInit {
 
   scanning: boolean = false;
-
   rssiFilter: RSSIFilter;
 
   uuids: Set<string> = new Set();
