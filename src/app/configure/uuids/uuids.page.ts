@@ -29,12 +29,15 @@ export class UuidsPage implements OnInit {
 
   private validateInput(uuid: string): string {
 
-    if (this.uuids.has(this.newUuid)) {
+    // uniformly transform input
+    const uniformUuid = uuid.toLowerCase().trim().replace(/[^a-zA-Z0-9 ]/g, '');
+
+    if (this.uuids.has(uniformUuid)) {
       throw new Error("This UUID already exists");
     }
 
     try {
-      const validUuid = Uuid(uuid)
+      const validUuid = Uuid(uniformUuid)
       return validUuid;
     } catch (error) {
       if (error instanceof StringOfLengthError || error instanceof NotStringError || error instanceof InvalidCharacterError) {
@@ -104,7 +107,6 @@ export class UuidsPage implements OnInit {
         console.error(error);
       } 
     }
-
     this.newUuid = "";
   }
 
