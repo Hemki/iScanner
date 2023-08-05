@@ -20,7 +20,7 @@
   </ion-header>
 
   <ion-list>
-    <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="handleInput()"></ion-searchbar>
+    <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterUuids()"></ion-searchbar>
     <ion-item-sliding *ngFor="let uuid of filteredUuids" [class.edit-mode]="isEditing">
       <ion-item *ngIf="isEditing" side="start">
         <ion-checkbox label-placement="end" justify="start" *ngIf="isEditing"

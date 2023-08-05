@@ -21,7 +21,7 @@ export class UuidsPage implements OnInit{
 
   async ngOnInit(): Promise<void> {
     this.uuids = new Set<string>(await this.storage.get("uuids"));
-    this.handleInput();
+    this.filterUuids();
   }
 
   public toggleEdit() {
@@ -34,43 +34,40 @@ export class UuidsPage implements OnInit{
     if (this.isEditing) {
       if (this.selectedUuids.has(uuid)) {
         this.selectedUuids.delete(uuid); // Deselect the uuid if already selected
-        console.log(this.selectedUuids);
       } else {
         this.selectedUuids.add(uuid); // Select the uuid if not already selected
-        console.log(this.selectedUuids);
       }
     } else {
-      // Handle regular click on mail items
-      // For example, navigate to a mail details page
+      //It should not be possible to click on a uuid withouth isEditing being enabled
+      console.error("This shouldn't have happened!")
     }
   }
 
   public deleteSelectedUuids() {
 
+    // Delete all selected UUIDs from the 
     this.uuids = new Set([...this.uuids].filter((uuid) => !this.selectedUuids.has(uuid)));
-    this.handleInput();
+    this.filterUuids();
     this.storage.set("uuids",this.uuids);
 
     // Clear the selected UUIDs set after deletion
     this.selectedUuids.clear();
     this.isEditing = false; // Exit edit mode after deleting UUIDs
-
-    console.log(this.uuids);
   }
 
-
+  // Delete a single UUID from the Set and update afterwards
   public deleteUuid(uuid: string) {
     this.uuids.delete(uuid);
-    this.handleInput();
+    this.filterUuids();
     this.storage.set("uuids",this.uuids);
   }
 
+  // Add a single UUID to the Set (+ update) only if it doesn't exist yet
   public async addUuid() {
     if (!this.uuids.has(this.newUuid)) {
       this.uuids.add(this.newUuid);
       this.filteredUuids.add(this.newUuid);
       this.storage.set("uuids",this.uuids);
-      console.log('UUID added:', this.newUuid);
     } else {
       const alert = await this.alertController.create({
         header: 'Duplicate UUID',
@@ -78,18 +75,20 @@ export class UuidsPage implements OnInit{
         buttons: ['OK'],
       });
       await alert.present();
-      console.log('UUID already exists:', this.newUuid);
+      console.error('UUID already exists:', this.newUuid);
     }
     this.newUuid = "";
   }
 
+  // Also allow to add UUIDs usiing the Keyboard
   public checkForEnter(event: KeyboardEvent) {
     if (event.key === 'Enter' && this.newUuid.trim() !== '') {
       this.addUuid();
     }
   }
 
-  handleInput() {
+  // Filter shown UUIDs using the searchbar
+  filterUuids() {
     this.filteredUuids = new Set([...this.uuids].filter((d) => d.toLowerCase().includes(this.searchTerm.toLowerCase())));
   }
 
