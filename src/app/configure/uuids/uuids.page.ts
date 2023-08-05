@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-import { StorageService } from 'src/app/services/shared/storage.service';
+import { StorageService } from 'src/app/services/shared/storage/storage.service';
+import { Uuid, StringOfLengthError, NotStringError, InvalidCharacterError } from 'src/app/services/shared/types/uuid';
 
 @Component({
   selector: 'app-uuids',
   templateUrl: './uuids.page.html',
   styleUrls: ['./uuids.page.scss'],
 })
-export class UuidsPage implements OnInit{
+export class UuidsPage implements OnInit {
+
+
 
   uuids: Set<string> = new Set<string>();
   filteredUuids: Set<string> = new Set([...this.uuids]);
@@ -16,12 +19,32 @@ export class UuidsPage implements OnInit{
   newUuid: string = "";
   searchTerm: string = "";
 
-  constructor(private alertController: AlertController, private storage: StorageService) { 
+  constructor(private alertController: AlertController, private storage: StorageService) {
   }
 
   async ngOnInit(): Promise<void> {
     this.uuids = new Set<string>(await this.storage.get("uuids"));
     this.filterUuids();
+  }
+
+  private validateInput(uuid: string): string {
+
+    if (this.uuids.has(this.newUuid)) {
+      throw new Error("This UUID already exists");
+    }
+
+    try {
+      const validUuid = Uuid(uuid)
+      return validUuid;
+    } catch (error) {
+      if (error instanceof StringOfLengthError || error instanceof NotStringError || error instanceof InvalidCharacterError) {
+        throw error;
+      } else {
+        console.error(error);
+        throw new Error("Internal Error 01");
+      }
+    }
+
   }
 
   public toggleEdit() {
@@ -48,7 +71,7 @@ export class UuidsPage implements OnInit{
     // Delete all selected UUIDs from the 
     this.uuids = new Set([...this.uuids].filter((uuid) => !this.selectedUuids.has(uuid)));
     this.filterUuids();
-    this.storage.set("uuids",this.uuids);
+    this.storage.set("uuids", this.uuids);
 
     // Clear the selected UUIDs set after deletion
     this.selectedUuids.clear();
@@ -59,28 +82,33 @@ export class UuidsPage implements OnInit{
   public deleteUuid(uuid: string) {
     this.uuids.delete(uuid);
     this.filterUuids();
-    this.storage.set("uuids",this.uuids);
+    this.storage.set("uuids", this.uuids);
   }
 
-  // Add a single UUID to the Set (+ update) only if it doesn't exist yet
+  // Add a single UUID to the Set (+ update) only if validate input does not throw an error
   public async addUuid() {
-    if (!this.uuids.has(this.newUuid)) {
-      this.uuids.add(this.newUuid);
-      this.filteredUuids.add(this.newUuid);
-      this.storage.set("uuids",this.uuids);
-    } else {
-      const alert = await this.alertController.create({
-        header: 'Duplicate UUID',
-        message: 'This UUID already exists.',
-        buttons: ['OK'],
-      });
-      await alert.present();
-      console.error('UUID already exists:', this.newUuid);
+    try{
+      const validUuid = this.validateInput(this.newUuid)
+      this.uuids.add(validUuid);
+      this.filteredUuids.add(validUuid);
+      this.storage.set("uuids", this.uuids);
+    } catch (error) {
+      if (error instanceof Error) {
+        const alert = await this.alertController.create({
+          header: 'Invalid UUID',
+          message: error.message,
+          buttons: ['OK'],
+        });
+        await alert.present();
+      } else {
+        console.error(error);
+      } 
     }
+
     this.newUuid = "";
   }
 
-  // Also allow to add UUIDs usiing the Keyboard
+  // Also allow to add UUIDs using the Keyboard
   public checkForEnter(event: KeyboardEvent) {
     if (event.key === 'Enter' && this.newUuid.trim() !== '') {
       this.addUuid();
