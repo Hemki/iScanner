@@ -36,7 +36,7 @@
       </ion-item-options>
     </ion-item-sliding>
     <ion-item>
-      <ion-input label="New UUID:" placeholder="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX" [(ngModel)]="newUuid" (keypress) ="checkForEnter($event)"></ion-input>
+      <ion-input label="New UUID:" label-placement="stacked" placeholder="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX" [(ngModel)]="newUuid" (keypress) ="checkForEnter($event)"></ion-input>
       <ion-button disabled="{{this.newUuid.trim() === ''}}" fill="clear" (click)=addUuid() slot="end">
         <ion-icon slot="icon-only" name="add-circle"></ion-icon>
       </ion-button>

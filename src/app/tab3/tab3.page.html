@@ -14,9 +14,24 @@
   </ion-header>
 
   <ion-list>
-    <ion-item (click)="goToUuidsPage()">
-      <ion-label>Navigate to UUIDs Page</ion-label>
-    </ion-item>
+    <ion-item-group>
+      <ion-item-divider>
+        Scan
+      </ion-item-divider>
+      <ion-item detail="true" (click)="goToUuidsPage()">
+        <ion-label>
+          <h3>Edit UUIDs</h3>
+          <p>Add or Delete UUIDs that should be scanned for</p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-toggle [(ngModel)]="this.rssiFilter.enabled" (ngModelChange)="updateRssiFilter()"> Filter by RSSI value </ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-range [disabled]="!this.rssiFilter.enabled" [(ngModel)]="this.rssiFilter.value" (ngModelChange)="updateRssiFilter()" aria-label="RSSI value" value = "80" [pin]="true"
+          [pinFormatter]="pinFormatter"><div slot="label">0</div></ion-range>
+      </ion-item>
+    </ion-item-group>
   </ion-list>
   <app-explore-container name="Tab 3 page"></app-explore-container>
 </ion-content>
