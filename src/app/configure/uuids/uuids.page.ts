@@ -10,8 +10,6 @@ import { Uuid, StringOfLengthError, NotStringError, InvalidCharacterError } from
 })
 export class UuidsPage implements OnInit {
 
-
-
   uuids: Set<string> = new Set<string>();
   filteredUuids: Set<string> = new Set([...this.uuids]);
   isEditing: boolean = false;
@@ -27,6 +25,7 @@ export class UuidsPage implements OnInit {
     this.filterUuids();
   }
 
+  // Ensuring that the UUID does not already exist, that it has a valid length and that it only contains hexadecimal digits
   private validateInput(uuid: string): string {
 
     // uniformly transform input

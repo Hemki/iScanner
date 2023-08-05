@@ -24,10 +24,10 @@
     <ion-item-sliding *ngFor="let uuid of filteredUuids" [class.edit-mode]="isEditing">
       <ion-item *ngIf="isEditing" side="start">
         <ion-checkbox label-placement="end" justify="start" *ngIf="isEditing"
-          (ionChange)="onUuidClick(uuid)">{{uuid}}</ion-checkbox>
+          (ionChange)="onUuidClick(uuid)">{{uuid | uppercase}}</ion-checkbox>
       </ion-item>
       <ion-item *ngIf="!isEditing">
-        <ion-label>{{uuid}}</ion-label>
+        <ion-label>{{uuid | uppercase}}</ion-label>
       </ion-item>
       <ion-item-options side="end">
         <ion-item-option (click)="deleteUuid(uuid)" color="danger">
@@ -36,7 +36,7 @@
       </ion-item-options>
     </ion-item-sliding>
     <ion-item>
-      <ion-input label="New UUID:" placeholder="XXXX-XXXX-XXXX-XXXX" [(ngModel)]="newUuid" (keypress) ="checkForEnter($event)"></ion-input>
+      <ion-input label="New UUID:" placeholder="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX" [(ngModel)]="newUuid" (keypress) ="checkForEnter($event)"></ion-input>
       <ion-button disabled="{{this.newUuid.trim() === ''}}" fill="clear" (click)=addUuid() slot="end">
         <ion-icon slot="icon-only" name="add-circle"></ion-icon>
       </ion-button>
