@@ -14,7 +14,6 @@ import { DefaultRssiFilterService } from '../services/shared/defaults/defaultRss
 export class Tab3Page implements OnInit{
 
   rssiFilter: RSSIFilter;
-
   txParameters: TxParameters
 
   constructor(private router: Router, private storage: StorageService, private defaultTxParametersService: DefaultTxParametersService, private defautlRssiFilterService: DefaultRssiFilterService) {
@@ -26,6 +25,11 @@ export class Tab3Page implements OnInit{
     const storedRssiFilter = await this.storage.get("rssi");
     if (storedRssiFilter) {
       this.rssiFilter = storedRssiFilter;
+    }
+
+    const storedTxParameters = await this.storage.get("txParam");
+    if (storedTxParameters) {
+      this.txParameters = storedTxParameters;
     }
   }
 
