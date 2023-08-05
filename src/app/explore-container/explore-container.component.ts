@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-explore-container',
@@ -7,6 +8,12 @@ import { Component, Input } from '@angular/core';
 })
 export class ExploreContainerComponent {
 
-  @Input() name?: string;
+  constructor(private navController: NavController) { }
+
+  @Input() action?: string;
+
+  goToSettings() {
+    this.navController.navigateForward('/tabs/tab3');
+  }
 
 }

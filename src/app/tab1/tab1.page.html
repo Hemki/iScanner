@@ -12,15 +12,19 @@
       <ion-title size="large">Scan for iBeacons</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  <app-explore-container name="Tab 1 page"></app-explore-container>
-  <div *ngIf="uuids;else noConfig">
-
+  <div *ngIf="uuids.size;else noConfig">
+    <div id="container">
+      <ion-button (click) = "toggleScanning()">{{ this.scanning ? "Stop" : "Start" }} Scan
+        <ion-icon slot="end" name="bluetooth"></ion-icon>
+      </ion-button>
+      <p>Scanning for iBeacons with the following UUID(s):</p>
+      <p *ngFor="let uuid of uuids">{{uuid}}</p>
+      <br> 
+      <p *ngIf="rssiFilter.enabled">Only showing iBeacons with RSSI value <br> greater than -{{rssiFilter.value}}</p>
+    </div>
   </div>
 
   <ng-template #noConfig>
-    <ion-item (click)="goToUuidsPage()">
-      <ion-label>Navigate to UUIDs Page</ion-label>
-    </ion-item>
+    <app-explore-container action="and input UUIDs"></app-explore-container>
   </ng-template>
 </ion-content>

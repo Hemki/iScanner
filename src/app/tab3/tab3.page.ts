@@ -1,17 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageService } from '../services/shared/storage/storage.service';
-
-// Storage
-// RSSI {
-//  enabled: true // Filter enabled?
-//  value: -80
-// }
-
-interface RSSIFilter {
-  enabled: boolean,
-  value: number
-}
+import { RSSIFilter } from '../services/shared/types/rssiFilter';
+import { TxParameters } from '../services/shared/types/txParameters';
+import { DefaultTxParametersService } from '../services/shared/defaults/defaultTxParameters';
+import { DefaultRssiFilterService } from '../services/shared/defaults/defaultRssiFilter';
 
 @Component({
   selector: 'app-tab3',
@@ -20,12 +13,14 @@ interface RSSIFilter {
 })
 export class Tab3Page implements OnInit{
 
-  rssiFilter: RSSIFilter = {
-    enabled: false,
-    value: 80,
-  };
+  rssiFilter: RSSIFilter;
 
-  constructor(private router: Router, private storage: StorageService) {}
+  txParameters: TxParameters
+
+  constructor(private router: Router, private storage: StorageService, private defaultTxParametersService: DefaultTxParametersService, private defautlRssiFilterService: DefaultRssiFilterService) {
+    this.txParameters = this.defaultTxParametersService.getDefaultTxParameters();
+    this.rssiFilter = this.defautlRssiFilterService.getDefaultRssiValues();
+  } 
 
   async ngOnInit(): Promise<void> {
     const storedRssiFilter = await this.storage.get("rssi");
