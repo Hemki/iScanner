@@ -50,8 +50,6 @@ export class Tab3Page implements OnInit {
   }
 
   async updateTxParameters() {
-    console.log("TEST")
-
     try {
       this.validateInput();
     } catch (error) {

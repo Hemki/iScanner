@@ -30,8 +30,6 @@ export class TransmitService {
 
     if (!this.platform.is("ios") || this.platform.is("mobileweb")) { throw new Error("This plattform is incompatible with iBeacon advertising."); }
 
-    // ToDo: Check whether init was already called previously
-
     // Request permission to use location on iOS
     await this.ibeacon.requestAlwaysAuthorization();
 
@@ -46,6 +44,7 @@ export class TransmitService {
       throw new Error("Major and Minor must be number");
     }
 
+    // Start Advertising as iBeacon
     let beaconRegion = this.ibeacon.BeaconRegion(`Advertising as ${txParameters.uuid}`, txParameters.uuid, txParameters.major, txParameters.minor);
     await this.ibeacon.startAdvertising(beaconRegion);
     this.beaconRegions.push(beaconRegion);

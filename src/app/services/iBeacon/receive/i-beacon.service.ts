@@ -24,8 +24,6 @@ export class IBeaconService implements OnDestroy {
 
     await this.platform.ready();
 
-    this.beaconMap.set("TEST", { uuid: "0", major: 0, minor: 0, accuracy: 0, proximity: "ProximityFar", tx: 0, rssi: -19 })
-
     if (!this.platform.is("ios") || this.platform.is("mobileweb")) { throw new Error("This plattform is incompatible with iBeacon scanning."); }
 
     // Create a new delegate and register it with the native layer
@@ -52,8 +50,6 @@ export class IBeaconService implements OnDestroy {
     await this.platform.ready()
 
     if (!this.platform.is("ios") || this.platform.is("mobileweb")) { throw new Error("This plattform is incompatible with iBeacon scanning."); }
-
-    // ToDo: Check whether init was already called previously
 
     // Request permission to use location on iOS
     await this.ibeacon.requestAlwaysAuthorization();

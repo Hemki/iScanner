@@ -1,14 +1,12 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-back-button default-href="/tabs/tab1"></ion-back-button>
-      </ion-buttons>
-      <ion-title>UUIDs</ion-title>
-      <ion-buttons slot="end">
-        <ion-button (click)="toggleEdit()"> {{ isEditing ? 'Done' : 'Edit' }} </ion-button>
-      </ion-buttons>
-    </ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title>UUIDs</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleEdit()"> {{ isEditing ? 'Done' : 'Edit' }} </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -23,8 +21,8 @@
     <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterUuids()"></ion-searchbar>
     <ion-item-sliding *ngFor="let uuid of filteredUuids" [class.edit-mode]="isEditing">
       <ion-item *ngIf="isEditing" side="start">
-        <ion-checkbox label-placement="end" justify="start" *ngIf="isEditing"
-          (ionChange)="onUuidClick(uuid)">{{uuid | uppercase}}</ion-checkbox>
+        <ion-checkbox label-placement="end" justify="start" *ngIf="isEditing" (ionChange)="onUuidClick(uuid)">{{uuid |
+          uppercase}}</ion-checkbox>
       </ion-item>
       <ion-item *ngIf="!isEditing">
         <ion-label>{{uuid | uppercase}}</ion-label>
@@ -36,7 +34,8 @@
       </ion-item-options>
     </ion-item-sliding>
     <ion-item>
-      <ion-input label="New UUID:" label-placement="stacked" placeholder="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX" [(ngModel)]="newUuid" (keypress) ="checkForEnter($event)"></ion-input>
+      <ion-input label="New UUID:" label-placement="stacked" placeholder="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+        [(ngModel)]="newUuid" (keypress)="checkForEnter($event)"></ion-input>
       <ion-button disabled="{{this.newUuid.trim() === ''}}" fill="clear" (click)=addUuid() slot="end">
         <ion-icon slot="icon-only" name="add-circle"></ion-icon>
       </ion-button>
