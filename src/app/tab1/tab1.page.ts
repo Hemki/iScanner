@@ -5,6 +5,8 @@ import { StorageService } from '../services/shared/storage/storage.service';
 import { DefaultRssiFilterService } from '../services/shared/defaults/defaultRssiFilter';
 import { IBeaconService } from '../services/iBeacon/receive/i-beacon.service';
 import { AlertController } from '@ionic/angular';
+import { Observable } from 'rxjs';
+import { Beacon } from '@awesome-cordova-plugins/ibeacon/ngx';
 
 @Component({
   selector: 'app-tab1',
@@ -13,6 +15,8 @@ import { AlertController } from '@ionic/angular';
 })
 export class Tab1Page implements OnInit {
 
+  beaconMap$: Observable<Map<string, Beacon>>;
+
   scanning: boolean = false;
   rssiFilter: RSSIFilter;
 
@@ -20,6 +24,7 @@ export class Tab1Page implements OnInit {
 
   constructor(private alertController: AlertController, private router: Router, private storage: StorageService, private defautlRssiFilterService: DefaultRssiFilterService, private ibeacon: IBeaconService) {
     this.rssiFilter = this.defautlRssiFilterService.getDefaultRssiValues();
+    this.beaconMap$ = this.ibeacon.getBeaconMapObservable(); 
   }
 
   async ngOnInit(): Promise<void> {
@@ -47,21 +52,27 @@ export class Tab1Page implements OnInit {
     if (!this.uuids.size) {
       return;
     }
-    try {
-      await this.ibeacon.init(Array.from(this.uuids));
-      this.scanning = !this.scanning;
-    } catch (error) {
-      if (error instanceof Error) {
-        const alert = await this.alertController.create({
-          header: 'Incompatible Platform',
-          message: error.message,
-          buttons: ['OK'],
-        });
-        await alert.present();
-      } else {
-        console.error(error);
+    if (this.scanning) {
+      await this.ibeacon.stopRanging();
+    } else {
+      try {
+        await this.ibeacon.startRanging(Array.from(this.uuids));
+      } catch (error) {
+        if (error instanceof Error) {
+          const alert = await this.alertController.create({
+            header: 'Error',
+            message: error.message,
+            buttons: ['OK'],
+          });
+          await alert.present();
+          return;
+        } else {
+          console.error(error);
+          return;
+        }
       }
     }
+    this.scanning = !this.scanning;
   }
 
   goToSettings() {

@@ -23,6 +23,11 @@
       <p *ngIf="rssiFilter.enabled">Only showing iBeacons with RSSI value <br> greater than -{{rssiFilter.value}}</p>
     </div>
   </div>
+  <ion-list>
+    <ion-item *ngFor="let beacon of beaconMap$ | async | keyvalue">
+      <ion-label>{{beacon.key}}</ion-label>
+    </ion-item>
+  </ion-list>
 
   <ng-template #noConfig>
     <app-explore-container action="and input UUIDs"></app-explore-container>
