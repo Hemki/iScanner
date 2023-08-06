@@ -1,9 +1,9 @@
 # iScanner
 
 <p float="left">
-<img src="./screenshots/receive.PNG" width="100">
-<img src="./screenshots/transmit.jpeg" width="100">
-<img src="./screenshots/settings.jpeg" width="100">
+<img src="./screenshots/receive.PNG" width="200">
+<img src="./screenshots/transmit.jpeg" width="200">
+<img src="./screenshots/settings.jpeg" width="200">
 </p>
 
 ## Overview
