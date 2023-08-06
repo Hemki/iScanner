@@ -189,5 +189,5 @@ ionic cap run ios
 ## Resources
 
 - Ionic Documentation: https://ionicframework.com/docs
-- Cordova iBeacon Plugin: https://ionicframework.com/docs/native/ibeacon
+- Cordova iBeacon Plugin: https://github.com/petermetz/cordova-plugin-ibeacon
 - Apple iBeacon Guidelines: https://developer.apple.com/ibeacon/
