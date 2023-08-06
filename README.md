@@ -42,7 +42,7 @@ The application is built using the Ionic/Angular framework.
     - OS     : macOS
 
 
-## Installation
+## 💻 Local Installation
 
 Follow these steps to set up and run the application:
 
@@ -69,6 +69,8 @@ npm install
 ```bash
 ionic serve
 ```
+Please note that Bluetooth services are not available in a browser but only on a native ios device.
+
 6. To run the app on a physical device or simulator:
 
 For iOS:
