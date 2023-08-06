@@ -25,19 +25,48 @@ The application is built using the Ionic/Angular framework.
     - @angular-devkit/schematics    : 16.1.8
     - @angular/cli                  : 16.1.8
     - @ionic/angular-toolkit        : 9.0.0
-
-Capacitor:
-
-   Capacitor CLI      : 5.2.2
-   @capacitor/android : not installed
-   @capacitor/core    : 5.2.2
-   @capacitor/ios     : 5.2.2
-
-System:
-
-   NodeJS : v18.17.0
-   npm    : 9.6.7
-   OS     : macOS
+- Capacitor:
+    - Capacitor CLI      : 5.2.2
+    - @capacitor/android : not installed
+    - @capacitor/core    : 5.2.2
+    - @capacitor/ios     : 5.2.2
+- System:
+    - NodeJS : v18.17.0
+    - npm    : 9.6.7
+    - OS     : macOS
 
 
 ## Installation
+
+Follow these steps to set up and run the application:
+
+Install Node.js and npm if you haven't already.
+
+Install Ionic CLI globally:
+```bash
+npm install -g @ionic/cli
+```
+
+Clone the repository and navigate to the project folder:
+
+```bash
+git clone <repository-url>
+cd project-folder
+```
+
+Install the project dependencies:
+
+```bash
+npm install
+```
+To run the app in the browser for development:
+```bash
+ionic serve
+```
+To run the app on a physical device or simulator:
+
+For iOS:
+
+```bash
+ionic cap run ios
+```
