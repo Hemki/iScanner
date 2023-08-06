@@ -92,27 +92,27 @@ The application is built using the Ionic/Angular framework.
 |   |   |   |   └── tab3.page.ts
 |   |   |   ├── subsites/
 |   |   |   |   ├── beacon-detail/
-|   |   |   |   |   ├── tab1.page.html
-|   |   |   |   |   ├── tab1.page.scss
-|   |   |   |   |   ├── tab1.page.spec.ts
-|   |   |   |   |   ├── tab1.module.ts
-|   |   |   |   |   ├── tab1-routing.module.ts
-|   |   |   |   |   └── tab1.page.ts
+|   |   |   |   |   ├── beacon-detail.page.html
+|   |   |   |   |   ├── beacon-detail.page.scss
+|   |   |   |   |   ├── beacon-detail.page.spec.ts
+|   |   |   |   |   ├── beacon-detail.module.ts
+|   |   |   |   |   ├── beacon-detail-routing.module.ts
+|   |   |   |   |   └── beacon-detail.page.ts
 |   |   |   |   ├── configure/
 |   |   |   |   |   ├── missing-config/
-|   |   |   |   |   |   ├── tab1.page.html
-|   |   |   |   |   |   ├── tab1.page.scss
-|   |   |   |   |   |   ├── tab1.page.spec.ts
-|   |   |   |   |   |   ├── tab1.module.ts
-|   |   |   |   |   |   ├── tab1-routing.module.ts
-|   |   |   |   |   |   └── tab1.page.ts
+|   |   |   |   |   |   ├── explore-container.page.html
+|   |   |   |   |   |   ├── explore-container.page.scss
+|   |   |   |   |   |   ├── explore-container.page.spec.ts
+|   |   |   |   |   |   ├── explore-container.module.ts
+|   |   |   |   |   |   ├── explore-container-routing.module.ts
+|   |   |   |   |   |   └── explore-container.page.ts
 |   |   |   |   |   ├── uuids/
-|   |   |   |   |   |   ├── tab1.page.html
-|   |   |   |   |   |   ├── tab1.page.scss
-|   |   |   |   |   |   ├── tab1.page.spec.ts
-|   |   |   |   |   |   ├── tab1.module.ts
-|   |   |   |   |   |   ├── tab1-routing.module.ts
-|   |   |   |   |   |   └── tab1.page.ts
+|   |   |   |   |   |   ├── uuids.page.html
+|   |   |   |   |   |   ├── uuids.page.scss
+|   |   |   |   |   |   ├── uuids.page.spec.ts
+|   |   |   |   |   |   ├── uuids.module.ts
+|   |   |   |   |   |   ├── uuids-routing.module.ts
+|   |   |   |   |   |   └── uuids.page.ts
 |   |   ├── app-routing.module.ts
 |   |   ├── app.component.html
 |   |   ├── app.component.scss
@@ -127,7 +127,23 @@ The application is built using the Ionic/Angular framework.
 ├── tsconfig.json
 └── ...
 ```
-
+The most important files and folders are the following:
+- services/
+    - iBeacon/
+        - receive/
+            -receive-beacon.service.ts: Responsible for ranging Beacons
+        - transmit/
+            -receive-beacon.service.ts: Responsible for advertising phone as Beacon
+    - shared/
+        -storage/: Responsible for storing advertisingParameters and UUIDs to be scanned.
+- pages/
+    - tab1-scan/: HTML, CSS and TS for the first Tab, Receiving.
+    - tab2-transmit/: HTML, CSS and TS for the second Tab, Transmitting.
+    - tab3-config/: HTML, CSS and TS for the last Tab, Configuration.
+    - subsites/
+        - beacon-detail/: HTML, CSS and TS for a beacon-detail pane.
+        - configure/
+            - uuds/: HTML, CSS and TS for adding and deleting UUIDs from the Storage.
 
 ## 💻 Local Installation
 
