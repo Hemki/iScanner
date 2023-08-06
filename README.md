@@ -1,5 +1,8 @@
 # iScanner
 
+#### Video Demo: TBD
+#### Description: A simple iBeacon scanner and advertisement app.
+
 <p float="left">
 <img src="./screenshots/receive.PNG" width="200">
 <img src="./screenshots/transmit.jpeg" width="200">
