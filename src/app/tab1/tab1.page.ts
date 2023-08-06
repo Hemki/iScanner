@@ -24,15 +24,21 @@ export class Tab1Page implements OnInit {
 
   constructor(private alertController: AlertController, private router: Router, private storage: StorageService, private defautlRssiFilterService: DefaultRssiFilterService, private ibeacon: IBeaconService) {
     this.rssiFilter = this.defautlRssiFilterService.getDefaultRssiValues();
-    this.beaconMap$ = this.ibeacon.getBeaconMapObservable(); 
+    this.beaconMap$ = this.ibeacon.getBeaconMapObservable();
   }
 
   async ngOnInit(): Promise<void> {
-    this.getConfigData();
+    await this.getConfigData();
   }
 
-  ionViewWillEnter() {
-    this.getConfigData();
+
+
+  async ionViewWillEnter() {
+    await this.getConfigData();
+  }
+
+  public openDetailPane(key: string) {
+    this.router.navigateByUrl(`tabs/tab1/beacon-detail/${key}`);
   }
 
   private async getConfigData() {
@@ -74,6 +80,7 @@ export class Tab1Page implements OnInit {
     }
     this.scanning = !this.scanning;
   }
+
 
   goToSettings() {
     this.router.navigateByUrl('/tabs/tab3');

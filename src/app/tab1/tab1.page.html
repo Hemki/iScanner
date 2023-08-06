@@ -24,7 +24,7 @@
     </div>
   </div>
   <ion-list>
-    <ion-item detail="true" *ngFor="let beacon of beaconMap$ | async | keyvalue">
+    <ion-item detail="true" *ngFor="let beacon of beaconMap$ | async | keyvalue" (click) = "openDetailPane(beacon.key)">
       <ion-label class="ion-text-wrap">
         <h3>{{beacon.value.uuid}}</h3>
         <p>Major: {{beacon.value.major}} &centerdot; Minor: {{beacon.value.minor}} &centerdot; Proximity: {{beacon.value.proximity}}</p>

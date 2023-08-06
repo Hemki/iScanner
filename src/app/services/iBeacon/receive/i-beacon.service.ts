@@ -2,7 +2,7 @@ import { Injectable, OnDestroy, NgZone } from '@angular/core';
 import { Beacon, BeaconRegion } from '@awesome-cordova-plugins/ibeacon/ngx';
 import { IBeacon } from '@awesome-cordova-plugins/ibeacon/ngx';
 import { Platform } from '@ionic/angular';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription, map, pipe } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +23,9 @@ export class IBeaconService implements OnDestroy {
   private async init() {
 
     await this.platform.ready();
+
+    this.beaconMap.set("TEST", { uuid: "0", major: 0, minor: 0, accuracy: 0, proximity: "ProximityFar", tx: 0, rssi: -19 })
+
     if (!this.platform.is("ios") || this.platform.is("mobileweb")) { throw new Error("This plattform is incompatible with iBeacon scanning."); }
 
     // Create a new delegate and register it with the native layer
@@ -79,6 +82,17 @@ export class IBeaconService implements OnDestroy {
 
   public getBeaconMapObservable(): Observable<Map<string, Beacon>> {
     return this.beaconSubject.asObservable();
+  }
+
+  public getBeaconByBeaconId(beaconId: string): Observable<Beacon> {
+    const beacon = this.beaconSubject.pipe(map((beaconMap) => {
+      const stBeacon =  beaconMap.get(beaconId);
+      if (stBeacon) {
+        return stBeacon;
+      }
+      throw new Error ("Beacon ID could not be found")
+    }));
+    return beacon;
   }
 
   ngOnDestroy(): void {
