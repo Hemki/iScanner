@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { RSSIFilter } from '../services/shared/types/rssiFilter';
 import { StorageService } from '../services/shared/storage/storage.service';
 import { DefaultRssiFilterService } from '../services/shared/defaults/defaultRssiFilter';
+import { IBeaconService } from '../services/iBeacon/receive/i-beacon.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -16,7 +18,7 @@ export class Tab1Page implements OnInit {
 
   uuids: Set<string> = new Set();
 
-  constructor(private router: Router, private storage: StorageService, private defautlRssiFilterService: DefaultRssiFilterService) {
+  constructor(private alertController: AlertController, private router: Router, private storage: StorageService, private defautlRssiFilterService: DefaultRssiFilterService, private ibeacon: IBeaconService) {
     this.rssiFilter = this.defautlRssiFilterService.getDefaultRssiValues();
   }
 
@@ -24,11 +26,11 @@ export class Tab1Page implements OnInit {
     this.getConfigData();
   }
 
-  ionViewWillEnter(){
+  ionViewWillEnter() {
     this.getConfigData();
   }
 
-  private async getConfigData(){
+  private async getConfigData() {
     // get initial configuration data (rssiFilter object and UUID Set)
     const savedRssiFilter = await this.storage.get("rssi")
     if (savedRssiFilter) {
@@ -41,8 +43,22 @@ export class Tab1Page implements OnInit {
     }
   }
 
-  toggleScanning(){
-    this.scanning = !this.scanning;
+  async toggleScanning() {
+    try {
+      await this.ibeacon.init();
+      this.scanning = !this.scanning;
+    } catch (error) {
+      if (error instanceof Error) {
+        const alert = await this.alertController.create({
+          header: 'Incompatible Platform',
+          message: error.message,
+          buttons: ['OK'],
+        });
+        await alert.present();
+      } else {
+        console.error(error);
+      }
+    }
   }
 
   goToSettings() {
