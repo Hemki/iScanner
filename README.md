@@ -135,7 +135,7 @@ The most important files and folders are the following:
         - transmit/
             -receive-beacon.service.ts: Responsible for advertising phone as Beacon
     - shared/
-        -storage/: Responsible for storing advertisingParameters and UUIDs to be scanned.
+        - storage/: Responsible for storing advertisingParameters and UUIDs to be scanned.
 - pages/
     - tab1-scan/: HTML, CSS and TS for the first Tab, Receiving.
     - tab2-transmit/: HTML, CSS and TS for the second Tab, Transmitting.
@@ -143,7 +143,7 @@ The most important files and folders are the following:
     - subsites/
         - beacon-detail/: HTML, CSS and TS for a beacon-detail pane.
         - configure/
-            - uuds/: HTML, CSS and TS for adding and deleting UUIDs from the Storage.
+            - uuids/: HTML, CSS and TS for adding and deleting UUIDs from the Storage.
 
 ## 💻 Local Installation
 
@@ -184,4 +184,10 @@ ionic cap run ios
 
 ## Compatibility
 
+- Tested on an iPhone 12 using IOS 16
+
 ## Resources
+
+- Ionic Documentation: https://ionicframework.com/docs
+- Cordova iBeacon Plugin: https://ionicframework.com/docs/native/ibeacon
+- Apple iBeacon Guidelines: https://developer.apple.com/ibeacon/
