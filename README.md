@@ -18,14 +18,13 @@ iScanner is an IOS app that can be used to scan for and advertise as an iBeacon 
 
 The application is built using the Ionic/Angular framework.
 
-Ionic:
-
-   Ionic CLI                     : 7.1.1
-   Ionic Framework               : @ionic/angular 7.2.2
-   @angular-devkit/build-angular : 16.1.8
-   @angular-devkit/schematics    : 16.1.8
-   @angular/cli                  : 16.1.8
-   @ionic/angular-toolkit        : 9.0.0
+- Ionic:
+    - Ionic CLI                     : 7.1.1
+    - Ionic Framework               : @ionic/angular 7.2.2
+    - @angular-devkit/build-angular : 16.1.8
+    - @angular-devkit/schematics    : 16.1.8
+    - @angular/cli                  : 16.1.8
+    - @ionic/angular-toolkit        : 9.0.0
 
 Capacitor:
 
