@@ -44,8 +44,11 @@ export class Tab1Page implements OnInit {
   }
 
   async toggleScanning() {
+    if (!this.uuids.size) {
+      return;
+    }
     try {
-      await this.ibeacon.init();
+      await this.ibeacon.init(Array.from(this.uuids));
       this.scanning = !this.scanning;
     } catch (error) {
       if (error instanceof Error) {

@@ -3,6 +3,8 @@ import { AlertController } from '@ionic/angular';
 import { StorageService } from 'src/app/services/shared/storage/storage.service';
 import { Uuid, StringOfLengthError, NotStringError, InvalidCharacterError } from 'src/app/services/shared/types/uuid';
 
+class DuplicateError extends Error { }
+
 @Component({
   selector: 'app-uuids',
   templateUrl: './uuids.page.html',
@@ -31,15 +33,15 @@ export class UuidsPage implements OnInit {
     // uniformly transform input
     const uniformUuid = uuid.toLowerCase().trim().replace(/[^a-zA-Z0-9 ]/g, '');
 
-    if (this.uuids.has(uniformUuid)) {
-      throw new Error("This UUID already exists");
-    }
-
     try {
       const validUuid = Uuid(uniformUuid)
-      return validUuid;
+      const outputUuid = this.formatUUIDString(validUuid);
+      if (this.uuids.has(outputUuid)) {
+        throw new DuplicateError("This UUID already exists");
+      }
+      return outputUuid;
     } catch (error) {
-      if (error instanceof StringOfLengthError || error instanceof NotStringError || error instanceof InvalidCharacterError) {
+      if (error instanceof StringOfLengthError || error instanceof NotStringError || error instanceof InvalidCharacterError || error instanceof DuplicateError) {
         throw error;
       } else {
         console.error(error);
@@ -89,7 +91,7 @@ export class UuidsPage implements OnInit {
 
   // Add a single UUID to the Set (+ update) only if validate input does not throw an error
   public async addUuid() {
-    try{
+    try {
       const validUuid = this.validateInput(this.newUuid)
       this.uuids.add(validUuid);
       this.filteredUuids.add(validUuid);
@@ -104,7 +106,7 @@ export class UuidsPage implements OnInit {
         await alert.present();
       } else {
         console.error(error);
-      } 
+      }
     }
     this.newUuid = "";
   }
@@ -120,5 +122,19 @@ export class UuidsPage implements OnInit {
   filterUuids() {
     this.filteredUuids = new Set([...this.uuids].filter((d) => d.toLowerCase().includes(this.searchTerm.toLowerCase())));
   }
+
+  private formatUUIDString(uuid: string): string {
+  
+    const segments = [
+      uuid.substring(0, 8),
+      uuid.substring(8, 12),
+      uuid.substring(12, 16),
+      uuid.substring(16, 20),
+      uuid.substring(20),
+    ];
+  
+    return segments.join("-");
+  }
+
 
 }
