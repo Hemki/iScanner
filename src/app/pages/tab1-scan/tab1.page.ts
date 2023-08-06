@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { RSSIFilter } from '../services/shared/types/rssiFilter';
-import { StorageService } from '../services/shared/storage/storage.service';
-import { DefaultRssiFilterService } from '../services/shared/defaults/defaultRssiFilter';
-import { IBeaconService } from '../services/iBeacon/receive/receive-beacon.service';
+import { RSSIFilter } from '../../services/shared/types/rssiFilter';
+import { StorageService } from '../../services/shared/storage/storage.service';
+import { DefaultRssiFilterService } from '../../services/shared/defaults/defaultRssiFilter';
+import { IBeaconService } from '../../services/iBeacon/receive/receive-beacon.service';
 import { AlertController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { Beacon } from '@awesome-cordova-plugins/ibeacon/ngx';

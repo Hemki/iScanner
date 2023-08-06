@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Beacon } from '@awesome-cordova-plugins/ibeacon/ngx';
-import { IBeaconService } from '../../services/iBeacon/receive/receive-beacon.service';
+import { IBeaconService } from '../../../services/iBeacon/receive/receive-beacon.service';
 import { Observable } from 'rxjs';
 
 @Component({

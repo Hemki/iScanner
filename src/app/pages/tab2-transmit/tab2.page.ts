@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { TxParameters } from '../services/shared/types/txParameters';
-import { DefaultTxParametersService } from '../services/shared/defaults/defaultTxParameters';
-import { StorageService } from '../services/shared/storage/storage.service';
+import { TxParameters } from '../../services/shared/types/txParameters';
+import { DefaultTxParametersService } from '../../services/shared/defaults/defaultTxParameters';
+import { StorageService } from '../../services/shared/storage/storage.service';
 import { AlertController } from '@ionic/angular';
-import { TransmitService } from '../services/iBeacon/transmit/transmit-beacon.service';
+import { TransmitService } from '../../services/iBeacon/transmit/transmit-beacon.service';
 
 @Component({
   selector: 'app-tab2',

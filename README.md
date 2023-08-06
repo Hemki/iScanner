@@ -49,39 +49,77 @@ The application is built using the Ionic/Angular framework.
 ```plaintext
 ├── src/
 |   ├── app/
-|   |   ├── core/
-|   |   |   ├── models/
-|   |   |   |   ├── beacon.model.ts
-|   |   |   |   └── tx-parameters.model.ts
-|   |   |   ├── services/
-|   |   |   |   ├── i-beacon.service.ts
-|   |   |   |   └── storage.service.ts
+|   |   ├── services/
+|   |   |   ├── iBeacon/
+|   |   |   |   ├── receive/
+|   |   |   |   |   ├── receive-beacon.service.ts
+|   |   |   |   |   └── receive-beacon.service.spec.ts
+|   |   |   |   ├── transmit/
+|   |   |   |   |   ├── transmit-beacon.service.ts
+|   |   |   |   |   └── transmit-beacon.service.spec.ts
+|   |   |   ├── shared/
+|   |   |   |   ├── defaults/
+|   |   |   |   |   ├── defaultRssiFilter.ts
+|   |   |   |   |   └── defaultTxParameters.ts
+|   |   |   |   ├── storage/
+|   |   |   |   |   ├── storage.service.ts
+|   |   |   |   |   └── storage.service.spec.ts
+|   |   |   |   ├── types/
+|   |   |   |   |   ├── rssiFilter.ts
+|   |   |   |   |   ├── uuid.ts
+|   |   |   |   |   └── txParameters.ts
 |   |   ├── pages/
-|   |   |   ├── advertising/
-|   |   |   |   ├── advertising.page.html
-|   |   |   |   ├── advertising.page.scss
-|   |   |   |   ├── advertising.page.spec.ts
-|   |   |   |   └── advertising.page.ts
-|   |   |   ├── scanning/
-|   |   |   |   ├── scanning.page.html
-|   |   |   |   ├── scanning.page.scss
-|   |   |   |   ├── scanning.page.spec.ts
-|   |   |   |   └── scanning.page.ts
-|   ├── shared/
-|   |   ├── defaults/
-|   |   |   ├── default-rssi-filter.service.ts
-|   |   |   └── default-tx-parameters.service.ts
-|   |   ├── types/
-|   |   |   ├── rssi-filter.model.ts
-|   |   |   └── tx-parameters.model.ts
-|   ├── app-routing.module.ts
-|   ├── app.component.html
-|   ├── app.component.scss
-|   ├── app.component.spec.ts
-|   ├── app.component.ts
-|   ├── app.module.ts
+|   |   |   ├── tab1-scan/
+|   |   |   |   ├── tab1.page.html
+|   |   |   |   ├── tab1.page.scss
+|   |   |   |   ├── tab1.page.spec.ts
+|   |   |   |   ├── tab1.module.ts
+|   |   |   |   ├── tab1-routing.module.ts
+|   |   |   |   └── tab1.page.ts
+|   |   |   ├── tab2-transmit/
+|   |   |   |   ├── tab2.page.html
+|   |   |   |   ├── tab2.page.scss
+|   |   |   |   ├── tab2.page.spec.ts
+|   |   |   |   ├── tab2.module.ts
+|   |   |   |   ├── tab2-routing.module.ts
+|   |   |   |   └── tab2.page.ts
+|   |   |   ├── tab3-config/
+|   |   |   |   ├── tab3.page.html
+|   |   |   |   ├── tab3.page.scss
+|   |   |   |   ├── tab3.page.spec.ts
+|   |   |   |   ├── tab3.module.ts
+|   |   |   |   ├── tab3-routing.module.ts
+|   |   |   |   └── tab3.page.ts
+|   |   |   ├── subsites/
+|   |   |   |   ├── beacon-detail/
+|   |   |   |   |   ├── tab1.page.html
+|   |   |   |   |   ├── tab1.page.scss
+|   |   |   |   |   ├── tab1.page.spec.ts
+|   |   |   |   |   ├── tab1.module.ts
+|   |   |   |   |   ├── tab1-routing.module.ts
+|   |   |   |   |   └── tab1.page.ts
+|   |   |   |   ├── configure/
+|   |   |   |   |   ├── missing-config/
+|   |   |   |   |   |   ├── tab1.page.html
+|   |   |   |   |   |   ├── tab1.page.scss
+|   |   |   |   |   |   ├── tab1.page.spec.ts
+|   |   |   |   |   |   ├── tab1.module.ts
+|   |   |   |   |   |   ├── tab1-routing.module.ts
+|   |   |   |   |   |   └── tab1.page.ts
+|   |   |   |   |   ├── uuids/
+|   |   |   |   |   |   ├── tab1.page.html
+|   |   |   |   |   |   ├── tab1.page.scss
+|   |   |   |   |   |   ├── tab1.page.spec.ts
+|   |   |   |   |   |   ├── tab1.module.ts
+|   |   |   |   |   |   ├── tab1-routing.module.ts
+|   |   |   |   |   |   └── tab1.page.ts
+|   |   ├── app-routing.module.ts
+|   |   ├── app.component.html
+|   |   ├── app.component.scss
+|   |   ├── app.component.spec.ts
+|   |   ├── app.component.ts
+|   |   └── app.module.ts
 |   └── main.ts
-├── android/
 ├── ios/
 ├── www/
 ├── resources/

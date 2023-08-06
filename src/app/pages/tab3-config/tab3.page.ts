@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { StorageService } from '../services/shared/storage/storage.service';
-import { RSSIFilter } from '../services/shared/types/rssiFilter';
-import { TxParameters } from '../services/shared/types/txParameters';
-import { DefaultTxParametersService } from '../services/shared/defaults/defaultTxParameters';
-import { DefaultRssiFilterService } from '../services/shared/defaults/defaultRssiFilter';
-import { InvalidCharacterError, NotStringError, StringOfLengthError, Uuid } from '../services/shared/types/uuid';
+import { StorageService } from '../../services/shared/storage/storage.service';
+import { RSSIFilter } from '../../services/shared/types/rssiFilter';
+import { TxParameters } from '../../services/shared/types/txParameters';
+import { DefaultTxParametersService } from '../../services/shared/defaults/defaultTxParameters';
+import { DefaultRssiFilterService } from '../../services/shared/defaults/defaultRssiFilter';
+import { InvalidCharacterError, NotStringError, StringOfLengthError, Uuid } from '../../services/shared/types/uuid';
 import { AlertController } from '@ionic/angular';
 
 class DuplicateError extends Error { }

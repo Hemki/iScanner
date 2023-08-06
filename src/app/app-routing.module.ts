@@ -4,15 +4,15 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+    loadChildren: () => import('./pages/tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
     path: 'uuids',
-    loadChildren: () => import('./subsites/configure/uuids/uuids.module').then( m => m.UuidsPageModule)
+    loadChildren: () => import('./pages/subsites/configure/uuids/uuids.module').then( m => m.UuidsPageModule)
   },
   {
     path: 'beacon-detail/:beaconId',
-    loadChildren: () => import('./subsites/beacon-detail/beacon-detail.module').then( m => m.BeaconDetailPageModule)
+    loadChildren: () => import('./pages/subsites/beacon-detail/beacon-detail.module').then( m => m.BeaconDetailPageModule)
   }
 ];
 @NgModule({
