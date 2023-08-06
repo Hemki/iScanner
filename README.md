@@ -1,10 +1,8 @@
 # iScanner
 
-![Screenshot of page 1 - Scan](./screenshots/receive.PNG | width=100px)
-![Screenshot of page 2 - Advertise](./screenshots/transmit.jpeg | width=100px)
-![Screenshot of page 3 - Settings](./screenshots/settings.jpeg | width=100px)
-
-<img src="./screenshots//receive.PNG" width="300">
+<img src="./screenshots/receive.PNG" width="300">
+<img src="./screenshots/transmit.jpeg" width="300">
+<img src="./screenshots/settings.jpeg" width="300">
 
 ## Overview
 
