@@ -45,6 +45,52 @@ The application is built using the Ionic/Angular framework.
     - OS     : macOS
 
 
+
+```plaintext
+├── src/
+|   ├── app/
+|   |   ├── core/
+|   |   |   ├── models/
+|   |   |   |   ├── beacon.model.ts
+|   |   |   |   └── tx-parameters.model.ts
+|   |   |   ├── services/
+|   |   |   |   ├── i-beacon.service.ts
+|   |   |   |   └── storage.service.ts
+|   |   ├── pages/
+|   |   |   ├── advertising/
+|   |   |   |   ├── advertising.page.html
+|   |   |   |   ├── advertising.page.scss
+|   |   |   |   ├── advertising.page.spec.ts
+|   |   |   |   └── advertising.page.ts
+|   |   |   ├── scanning/
+|   |   |   |   ├── scanning.page.html
+|   |   |   |   ├── scanning.page.scss
+|   |   |   |   ├── scanning.page.spec.ts
+|   |   |   |   └── scanning.page.ts
+|   ├── shared/
+|   |   ├── defaults/
+|   |   |   ├── default-rssi-filter.service.ts
+|   |   |   └── default-tx-parameters.service.ts
+|   |   ├── types/
+|   |   |   ├── rssi-filter.model.ts
+|   |   |   └── tx-parameters.model.ts
+|   ├── app-routing.module.ts
+|   ├── app.component.html
+|   ├── app.component.scss
+|   ├── app.component.spec.ts
+|   ├── app.component.ts
+|   ├── app.module.ts
+|   └── main.ts
+├── android/
+├── ios/
+├── www/
+├── resources/
+├── package.json
+├── tsconfig.json
+└── ...
+```
+
+
 ## 💻 Local Installation
 
 Follow these steps to set up and run the application:
@@ -81,3 +127,7 @@ For iOS:
 ```bash
 ionic cap run ios
 ```
+
+## Compatibility
+
+## Resources
