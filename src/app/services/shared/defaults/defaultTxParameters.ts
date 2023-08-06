@@ -9,10 +9,8 @@ export class DefaultTxParametersService {
     return {
       enabled: false,
       uuid: "",
-      major: 0,
-      minor: 0,
-      advertisingInterval: 0,
-      txPower: 0,
+      major: "",
+      minor: "",
     };
   }
 }

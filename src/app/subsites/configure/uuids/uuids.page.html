@@ -1,0 +1,53 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title>UUIDs</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="toggleEdit()"> {{ isEditing ? 'Done' : 'Edit' }} </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">UUIDs</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list>
+    <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterUuids()"></ion-searchbar>
+    <ion-item-sliding *ngFor="let uuid of filteredUuids" [class.edit-mode]="isEditing">
+      <ion-item *ngIf="isEditing" side="start">
+        <ion-checkbox label-placement="end" justify="start" *ngIf="isEditing" (ionChange)="onUuidClick(uuid)">{{uuid |
+          uppercase}}</ion-checkbox>
+      </ion-item>
+      <ion-item *ngIf="!isEditing">
+        <ion-label>{{uuid | uppercase}}</ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option (click)="deleteUuid(uuid)" color="danger">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+    <ion-item>
+      <ion-input label="New UUID:" label-placement="stacked" placeholder="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+        [(ngModel)]="newUuid" (keypress)="checkForEnter($event)"></ion-input>
+      <ion-button disabled="{{this.newUuid.trim() === ''}}" fill="clear" (click)=addUuid() slot="end">
+        <ion-icon slot="icon-only" name="add-circle"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer *ngIf="isEditing">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button disabled="{{!this.selectedUuids.size}}" (click)="deleteSelectedUuids()">Delete</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

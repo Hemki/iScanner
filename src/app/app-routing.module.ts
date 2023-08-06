@@ -8,7 +8,11 @@ const routes: Routes = [
   },
   {
     path: 'uuids',
-    loadChildren: () => import('./configure/uuids/uuids.module').then( m => m.UuidsPageModule)
+    loadChildren: () => import('./subsites/configure/uuids/uuids.module').then( m => m.UuidsPageModule)
+  },
+  {
+    path: 'beacon-detail/:beaconId',
+    loadChildren: () => import('./subsites/beacon-detail/beacon-detail.module').then( m => m.BeaconDetailPageModule)
   }
 ];
 @NgModule({

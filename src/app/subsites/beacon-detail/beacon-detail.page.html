@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Details</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-card *ngIf="(beacon$ | async) as beacon">
+    <ion-card-header>
+      <ion-card-title>UUID: {{ beacon.uuid }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Major: {{ beacon.major }}</p>
+      <p>Minor: {{ beacon.minor }}</p>
+      <p>Accuracy: {{beacon.accuracy}}</p>
+      <p>Proximity: {{beacon.proximity}}</p>
+      <p>RSSI: {{beacon.rssi}}</p>
+      <p>TX: {{beacon.tx}}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

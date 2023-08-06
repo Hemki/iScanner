@@ -1,0 +1,53 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Settings
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Settings</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-list>
+    <ion-item-group>
+      <ion-item-divider>
+        Receive
+      </ion-item-divider>
+      <ion-item detail="true" (click)="goToUuidsPage()">
+        <ion-label>
+          <h3>Edit UUIDs</h3>
+          <p>Add or Delete UUIDs that should be scanned for</p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-toggle [(ngModel)]="this.rssiFilter.enabled" (ngModelChange)="updateRssiFilter()"> Filter by RSSI value
+        </ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-range [disabled]="!this.rssiFilter.enabled" [(ngModel)]="this.rssiFilter.value"
+          (ngModelChange)="updateRssiFilter()" aria-label="RSSI value" value="80" [pin]="true"
+          [pinFormatter]="pinFormatter">
+          <div slot="label">0</div>
+        </ion-range>
+      </ion-item>
+    </ion-item-group>
+    <ion-item-group>
+      <ion-item-divider>
+        Transmit
+      </ion-item-divider>
+      <ion-item><ion-input label="UUID:" label-placement="stacked"
+          placeholder="00000000-0000-0000-0000-00000000000" [(ngModel)]="txParameters.uuid" ></ion-input>
+      </ion-item>
+      <ion-item><ion-input label="Major:" label-placement="stacked" placeholder="123456" inputmode="numeric" [(ngModel)]="txParameters.major"></ion-input>
+      </ion-item>
+      <ion-item><ion-input label="Minor:" label-placement="stacked" placeholder="123456" inputmode="numeric" [(ngModel)]="txParameters.minor"></ion-input>
+      </ion-item>
+      <ion-button expand="full" (click)="updateTxParameters()">Save Transmit Settings</ion-button>
+    </ion-item-group>
+  </ion-list>
+</ion-content>
