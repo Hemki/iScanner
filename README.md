@@ -19,8 +19,8 @@ iScanner is an IOS app that can be used to scan for and advertise as an iBeacon 
 
 ## 🪄 Features
 
-- Scanning iBeacon(s): Scan for nearby iBeacons by supplying one or several UUIDs. The information of all nearby iBeacons that are comply to the supplied UUIDs are displayed in a list, including UUID, major, minor, proximity and RSSI (Received Signal Strength Indicator).
-- Advertising iBeacon: Turn your smartphone into an iBeacon. This allows other devices to scan and detect your phone as an iBeacon.
+- Scanning iBeacon(s): Scan for nearby iBeacons by supplying one or several UUIDs. The information of all nearby iBeacons are displayed in a list, including UUID, major, minor, proximity and RSSI (Received Signal Strength Indicator).
+- Advertising iBeacon: Turn your smartphone into an iBeacon. This allows other devices to scan and detect your phone as an iBeacon. You can configure your iBeacon advertisiment parameters in the Settings tab.
 
 
 ## 🔧 Architecture
