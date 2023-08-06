@@ -25,7 +25,7 @@ export class IBeaconService implements OnDestroy {
     await this.platform.ready();
     if (!this.platform.is("ios") || this.platform.is("mobileweb")) { throw new Error("This plattform is incompatible with iBeacon scanning."); }
 
-    // create a new delegate and register it with the native layer
+    // Create a new delegate and register it with the native layer
     let delegate = this.ibeacon.Delegate();
 
     // Add Ranging Beacons to subscriptions

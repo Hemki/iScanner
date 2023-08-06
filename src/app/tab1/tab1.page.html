@@ -14,18 +14,21 @@
   </ion-header>
   <div *ngIf="uuids.size;else noConfig">
     <div id="container">
-      <ion-button (click) = "toggleScanning()">{{ this.scanning ? "Stop" : "Start" }} Scan
+      <ion-button (click)="toggleScanning()">{{ this.scanning ? "Stop" : "Start" }} Scan
         <ion-icon slot="end" name="bluetooth"></ion-icon>
       </ion-button>
       <p>Scanning for iBeacons with the following UUID(s):</p>
       <p *ngFor="let uuid of uuids">{{uuid}}</p>
-      <br> 
+      <br>
       <p *ngIf="rssiFilter.enabled">Only showing iBeacons with RSSI value <br> greater than -{{rssiFilter.value}}</p>
     </div>
   </div>
   <ion-list>
-    <ion-item *ngFor="let beacon of beaconMap$ | async | keyvalue">
-      <ion-label>{{beacon.key}}</ion-label>
+    <ion-item detail="true" *ngFor="let beacon of beaconMap$ | async | keyvalue">
+      <ion-label class="ion-text-wrap">
+        <h3>{{beacon.value.uuid}}</h3>
+        <p>Major: {{beacon.value.major}} &centerdot; Minor: {{beacon.value.minor}} &centerdot; Proximity: {{beacon.value.proximity}}</p>
+      </ion-label>
     </ion-item>
   </ion-list>
 
