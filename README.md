@@ -128,22 +128,24 @@ The application is built using the Ionic/Angular framework.
 └── ...
 ```
 The most important files and folders are the following:
-- services/
-    - iBeacon/
-        - receive/
-            -receive-beacon.service.ts: Responsible for ranging Beacons
-        - transmit/
-            -receive-beacon.service.ts: Responsible for advertising phone as Beacon
-    - shared/
-        - storage/: Responsible for storing advertisingParameters and UUIDs to be scanned.
-- pages/
-    - tab1-scan/: HTML, CSS and TS for the first Tab, Receiving.
-    - tab2-transmit/: HTML, CSS and TS for the second Tab, Transmitting.
-    - tab3-config/: HTML, CSS and TS for the last Tab, Configuration.
-    - subsites/
-        - beacon-detail/: HTML, CSS and TS for a beacon-detail pane.
-        - configure/
-            - uuids/: HTML, CSS and TS for adding and deleting UUIDs from the Storage.
+- app/
+    - services/
+        - iBeacon/
+            - receive/
+                -receive-beacon.service.ts: Responsible for ranging Beacons
+            - transmit/
+                -receive-beacon.service.ts: Responsible for advertising phone as Beacon
+        - shared/
+            - storage/: Responsible for storing advertisingParameters and UUIDs to be scanned.
+    - pages/
+        - tab1-scan/: HTML, CSS and TS for the first Tab, Receiving.
+        - tab2-transmit/: HTML, CSS and TS for the second Tab, Transmitting.
+        - tab3-config/: HTML, CSS and TS for the last Tab, Configuration.
+        - subsites/
+            - beacon-detail/: HTML, CSS and TS for a beacon-detail pane.
+            - configure/
+                - uuids/: HTML, CSS and TS for adding and deleting UUIDs from the Storage.
+- ios/: Compiled IOS code using npx cap add ios. Can be opened and run in XCode.
 
 ## 💻 Local Installation
 
