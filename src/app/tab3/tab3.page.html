@@ -41,16 +41,13 @@
         Transmit
       </ion-item-divider>
       <ion-item><ion-input label="UUID:" label-placement="stacked"
-          placeholder="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"></ion-input>
+          placeholder="00000000-0000-0000-0000-00000000000" [(ngModel)]="txParameters.uuid" ></ion-input>
       </ion-item>
-      <ion-item><ion-input label="Major:" label-placement="stacked" placeholder="123456"></ion-input>
+      <ion-item><ion-input label="Major:" label-placement="stacked" placeholder="123456" [(ngModel)]="txParameters.major"></ion-input>
       </ion-item>
-      <ion-item><ion-input label="Minor:" label-placement="stacked" placeholder="123456"></ion-input>
+      <ion-item><ion-input label="Minor:" label-placement="stacked" placeholder="123456" [(ngModel)]="txParameters.minor"></ion-input>
       </ion-item>
-      <ion-item><ion-input label="advertisingInterval:" label-placement="stacked" placeholder="100"></ion-input>
-      </ion-item>
-      <ion-item><ion-input label="txPower:" label-placement="stacked" placeholder="-70"></ion-input>
-      </ion-item>
+      <ion-button expand="full" (click)="updateTxParameters()">Save Transmit Settings</ion-button>
     </ion-item-group>
   </ion-list>
 </ion-content>

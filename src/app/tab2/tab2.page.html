@@ -12,5 +12,20 @@
       <ion-title size="large">Transmit as iBeacon</ion-title>
     </ion-toolbar>
   </ion-header>
-  <app-explore-container action="and edit iBeacon Tx Parameters"></app-explore-container>
+  <div *ngIf="txParameters.uuid !== '';else noConfig">
+    <div id="container">
+      <ion-button (click)="toggleAdvertising()" >{{ this.advertising ? "Stop" : "Start" }} Advertising
+        <ion-icon slot="end" name="bluetooth"></ion-icon>
+      </ion-button>
+      <p>Advertising as iBeacons with the following Parameters:</p>
+      <p>UUID: {{txParameters.uuid}}</p>
+      <p>Major: {{txParameters.major}}</p>
+      <p>Minor: {{txParameters.minor}}</p>
+      
+    </div>
+  </div>
+
+  <ng-template #noConfig>
+    <app-explore-container action="and edit iBeacon Tx Parameters"></app-explore-container>
+  </ng-template>
 </ion-content>
