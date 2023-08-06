@@ -40,30 +40,30 @@ The application is built using the Ionic/Angular framework.
 
 Follow these steps to set up and run the application:
 
-Install Node.js and npm if you haven't already.
+1. Install Node.js and npm if you haven't already. I recommend using [nvm](https://github.com/nvm-sh/nvm) for Node.js installation.
 
-Install Ionic CLI globally:
+2. Install Ionic CLI globally:
 ```bash
 npm install -g @ionic/cli
 ```
 
-Clone the repository and navigate to the project folder:
+3. Clone the repository and navigate to the project folder:
 
 ```bash
 git clone <repository-url>
 cd project-folder
 ```
 
-Install the project dependencies:
+4. Install the project dependencies:
 
 ```bash
 npm install
 ```
-To run the app in the browser for development:
+5. To run the app in the browser for development:
 ```bash
 ionic serve
 ```
-To run the app on a physical device or simulator:
+6. To run the app on a physical device or simulator:
 
 For iOS:
 
