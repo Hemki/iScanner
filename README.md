@@ -186,7 +186,7 @@ ionic cap run ios
 
 ## Compatibility
 
-- Tested on an iPhone 12 using IOS 16
+- Tested on an iPhone 12 using IOS 16.
 
 ## Resources
 
