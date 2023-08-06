@@ -1,8 +1,10 @@
 # iScanner
 
+<p float="left">
 <img src="./screenshots/receive.PNG" width="300">
 <img src="./screenshots/transmit.jpeg" width="300">
 <img src="./screenshots/settings.jpeg" width="300">
+</p>
 
 ## Overview
 
