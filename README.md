@@ -1,6 +1,6 @@
 # iScanner
 
-#### Video Demo: TBD
+#### Video Demo: https://www.youtube.com/watch?v=iki2Dmt9oVE
 #### Description: A simple iBeacon scanner and advertisement app.
 
 <p float="left">
