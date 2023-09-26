@@ -26,7 +26,7 @@
   <ion-list>
     <ng-container *ngFor="let beacon of beaconMap$ | async | keyvalue">
       <ion-item detail="true"
-        *ngIf="!rssiFilter.enabled || (rssiFilter.enabled && beacon.value.rssi >= (rssiFilter.value *-1))"
+        *ngIf="(!rssiFilter.enabled || (rssiFilter.enabled && beacon.value.rssi >= (rssiFilter.value *-1))) &&  uuids.has(beacon.value.uuid)"
         (click)="openDetailPane(beacon.key)">
         <ion-label class="ion-text-wrap">
           <h3>{{beacon.value.uuid}}</h3>

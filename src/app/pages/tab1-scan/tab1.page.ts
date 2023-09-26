@@ -31,8 +31,6 @@ export class Tab1Page implements OnInit {
     await this.getConfigData();
   }
 
-
-
   async ionViewWillEnter() {
     await this.getConfigData();
   }
@@ -42,6 +40,11 @@ export class Tab1Page implements OnInit {
   }
 
   private async getConfigData() {
+
+    // Set initial UUID for demo version
+    //DOesn't work here!
+    //this.storage.set("uuids", ["b7e18b02-5ca0-11ee-8c99-0242ac120002"]);
+
     // get initial configuration data (rssiFilter object and UUID Set)
     const savedRssiFilter = await this.storage.get("rssi")
     if (savedRssiFilter) {
@@ -71,7 +74,6 @@ export class Tab1Page implements OnInit {
             buttons: ['OK'],
           });
           await alert.present();
-          return;
         } else {
           console.error(error);
           return;
