@@ -28,7 +28,6 @@ export class StorageService {
 
     if ((result === null && key === "uuids") || (result instanceof Set && result.size === 0)) {
       // Set initial UUID for demo version
-      console.log("IN HERE");
       return new Set(["b7e18b02-5ca0-11ee-8c99-0242ac120002"]);
     }
 
