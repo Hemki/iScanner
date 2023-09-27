@@ -14,7 +14,7 @@ export class IBeaconService implements OnDestroy {
   private beaconRegions: BeaconRegion[] = [];
   private beaconMap: Map<string, Beacon> = new Map();
   private beaconSubject: BehaviorSubject<Map<string, Beacon>> = new BehaviorSubject<Map<string, Beacon>>(this.beaconMap);
-
+  private dummyStreamID: any; 
 
   constructor(private ibeacon: IBeacon, private platform: Platform, private zone: NgZone, private dummy: DummyBeaconService) {
     this.init();
@@ -53,7 +53,7 @@ export class IBeaconService implements OnDestroy {
     if (!this.platform.is("ios") || this.platform.is("mobileweb")) {
 
       //Get random dummy beacons for demo
-      setInterval(() => {
+      this.dummyStreamID = setInterval(() => {
         const singleBeacon = this.dummy.getRandomBeacon();
         // Beacons are stored in a map, with a compound key of UUID-Major-Minor.
         this.beaconMap.set(`${singleBeacon.uuid}-${singleBeacon.major}-${singleBeacon.minor}`, singleBeacon);
@@ -82,6 +82,9 @@ export class IBeaconService implements OnDestroy {
   }
 
   public async stopRanging() {
+
+    if (this.dummyStreamID) { clearInterval(this.dummyStreamID) }
+
     this.beaconRegions.forEach(async (beaconRegion) => {
       await this.ibeacon.stopRangingBeaconsInRegion(beaconRegion);
       console.log(`Stopped Ranging for ${beaconRegion.uuid}`)
