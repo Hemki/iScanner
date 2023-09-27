@@ -12,7 +12,7 @@ import { IBeacon } from '@awesome-cordova-plugins/ibeacon/ngx';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, IonicStorageModule.forRoot()],
+  imports: [BrowserModule, IonicModule.forRoot({mode: "ios"}), AppRoutingModule, IonicStorageModule.forRoot()],
   providers: [IBeacon,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],
   bootstrap: [AppComponent],
 })
